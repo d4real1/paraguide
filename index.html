@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ParaGuide – Parasite & Cure Info</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #f0f7f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #1e3a2f;
+            color: white;
+            padding: 20px 24px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .header p {
+            margin: 8px 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 24px;
+        }
+        .warning {
+            background: #fff3e0;
+            border-left: 5px solid #e67e22;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 10px 16px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 20px 20px 0 0;
+            transition: 0.2s;
+        }
+        .tab-btn.active {
+            background: #1e3a2f;
+            color: white;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .symptom-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 1rem;
+        }
+        button {
+            background: #1e3a2f;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 12px;
+            width: 100%;
+        }
+        .result {
+            margin-top: 24px;
+            background: #f9f9f9;
+            padding: 16px;
+            border-radius: 20px;
+            border-left: 4px solid #1e3a2f;
+        }
+        .parasite-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #1e3a2f;
+        }
+        hr {
+            margin: 16px 0;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #666;
+            padding: 16px;
+            border-top: 1px solid #eee;
+        }
+        @media (max-width: 600px) {
+            .content { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🦠 ParaGuide</h1>
+        <p>Symptom-based parasite information & evidence-based cures</p>
+    </div>
+    <div class="content">
+        <div class="warning">
+            ⚠️ <strong>Medical disclaimer:</strong> This tool is for educational purposes only. It does not provide medical diagnosis or treatment advice. Always consult a qualified healthcare professional for any health concerns or before taking any medication.
+        </div>
+
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="symptom">🔍 By Symptoms</button>
+            <button class="tab-btn" data-tab="search">🔎 Search Parasite</button>
+            <button class="tab-btn" data-tab="all">📋 All Parasites</button>
+        </div>
+
+        <!-- Symptom tab -->
+        <div id="symptom-tab" class="tab-pane active">
+            <div class="symptom-group">
+                <label>Select your primary symptom(s) – choose the most relevant:</label>
+                <select id="symptomSelect">
+                    <option value="">-- Select a symptom --</option>
+                    <option value="diarrhea">💧 Diarrhea (watery)</option>
+                    <option value="bloody_stool">🩸 Bloody stool or dysentery</option>
+                    <option value="abdominal_pain">🤰 Abdominal pain / bloating</option>
+                    <option value="anal_itching">🦷 Anal itching (worse at night)</option>
+                    <option value="fever_chills">🌡️ Fever & chills (cyclic)</option>
+                    <option value="fatigue_anemia">😴 Fatigue, pallor (anemia)</option>
+                    <option value="seizures">🧠 Seizures or neurological symptoms</option>
+                    <option value="skin_ulcers">🩹 Skin ulcers or sores</option>
+                    <option value="cough_cysts">🍃 Cough, liver cysts (hydatid)</option>
+                </select>
+            </div>
+            <button id="symptomBtn">Show possible parasites</button>
+            <div id="symptomResult" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Search tab -->
+        <div id="search-tab" class="tab-pane">
+            <div class="symptom-group">
+                <label>Enter parasite name (partial allowed):</label>
+                <input type="text" id="searchInput" placeholder="e.g., Giardia, tapeworm, Ascaris">
+            </div>
+            <button id="searchBtn">Search</button>
+            <div id="searchResult" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- All parasites tab -->
+        <div id="all-tab" class="tab-pane">
+            <div id="allResult" class="result"></div>
+        </div>
+    </div>
+    <div class="footer">
+        Data sources: CDC, WHO, peer-reviewed literature. Not a substitute for professional medical advice.
+    </div>
+</div>
+
+<script src="parasite_data.js"></script>
+<script>
+    // Global variable from parasite_data.js: window.parasiteData
+    function displayParasite(parasite) {
+        let html = `<div class="parasite-name">🪱 ${parasite.name} (${parasite.type})</div>`;
+        html += `<div><strong>Effects:</strong> ${parasite.effects}</div>`;
+        html += `<div><strong>Primary pharmaceutical cure:</strong> ${parasite.pharma_cure}</div>`;
+        if (parasite.adjunct_natural) {
+            html += `<div><strong>Adjunct (low evidence, not standalone):</strong> ${parasite.adjunct_natural}</div>`;
+        }
+        html += `<div><strong>⚠️ Important:</strong> Prescription required. Do not self-treat.</div><hr>`;
+        return html;
+    }
+
+    function searchParasite(query) {
+        const q = query.toLowerCase();
+        const matches = window.parasiteData.filter(p => p.name.toLowerCase().includes(q));
+        if (matches.length === 0) return "<p>No parasite found with that name. Try 'Giardia', 'Ascaris', etc.</p>";
+        return matches.map(displayParasite).join('');
+    }
+
+    function getParasitesBySymptom(symptom) {
+        const mapping = {
+            "diarrhea": ["Giardia lamblia", "Entamoeba histolytica", "Cryptosporidium spp."],
+            "bloody_stool": ["Entamoeba histolytica", "Trichuris trichiura", "Schistosoma mansoni"],
+            "abdominal_pain": ["Ascaris lumbricoides", "Taenia solium", "Giardia lamblia"],
+            "anal_itching": ["Enterobius vermicularis"],
+            "fever_chills": ["Plasmodium falciparum", "Trypanosoma cruzi", "Leishmania donovani"],
+            "fatigue_anemia": ["Plasmodium falciparum", "Hookworm (Necator americanus)", "Trichuris trichiura"],
+            "seizures": ["Taenia solium (neurocysticercosis)", "Toxoplasma gondii (if immunocompromised)"],
+            "skin_ulcers": ["Leishmania spp.", "Onchocerca volvulus"],
+            "cough_cysts": ["Echinococcus granulosus", "Paragonimus westermani"]
+        };
+        let suggestedNames = mapping[symptom] || [];
+        let matched = window.parasiteData.filter(p => suggestedNames.some(name => p.name.toLowerCase().includes(name.toLowerCase())));
+        if (matched.length === 0 && suggestedNames.length) {
+            // fallback: try direct name match
+            matched = window.parasiteData.filter(p => suggestedNames.includes(p.name));
+        }
+        if (matched.length === 0) return "<p>No common parasite matches this symptom in our database. Please consult a doctor.</p>";
+        return matched.map(displayParasite).join('');
+    }
+
+    // UI logic
+    document.addEventListener('DOMContentLoaded', () => {
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab-btn');
+        const panes = {
+            symptom: document.getElementById('symptom-tab'),
+            search: document.getElementById('search-tab'),
+            all: document.getElementById('all-tab')
+        };
+        tabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                tabs.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                Object.keys(panes).forEach(id => {
+                    panes[id].classList.remove('active');
+                });
+                panes[tabId].classList.add('active');
+                if (tabId === 'all') {
+                    document.getElementById('allResult').innerHTML = window.parasiteData.map(displayParasite).join('');
+                }
+            });
+        });
+
+        // Symptom button
+        document.getElementById('symptomBtn').addEventListener('click', () => {
+            const symptom = document.getElementById('symptomSelect').value;
+            if (!symptom) {
+                document.getElementById('symptomResult').innerHTML = '<p>Please select a symptom.</p>';
+                document.getElementById('symptomResult').style.display = 'block';
+                return;
+            }
+            const resultHtml = getParasitesBySymptom(symptom);
+            document.getElementById('symptomResult').innerHTML = resultHtml;
+            document.getElementById('symptomResult').style.display = 'block';
+        });
+
+        // Search button
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                document.getElementById('searchResult').innerHTML = '<p>Enter a parasite name.</p>';
+                document.getElementById('searchResult').style.display = 'block';
+                return;
+            }
+            const resultHtml = searchParasite(query);
+            document.getElementById('searchResult').innerHTML = resultHtml;
+            document.getElementById('searchResult').style.display = 'block';
+        });
+
+        // Preload all tab if needed later
+    });
+</script>
+</body>
+  </html>
