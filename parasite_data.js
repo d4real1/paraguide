@@ -1,87 +1,35 @@
-// ParaGuide database – all parasites, effects, cures
+// ParaGuide+ database – 31 parasites
 window.parasiteData = [
-    {
-        name: "Entamoeba histolytica",
-        type: "Protozoa",
-        effects: "Bloody diarrhea, dysentery, liver abscess, abdominal pain.",
-        pharma_cure: "Metronidazole or tinidazole + paromomycin (prescription required)",
-        adjunct_natural: "Garlic (weak in vitro evidence; not a cure)"
-    },
-    {
-        name: "Giardia lamblia",
-        type: "Protozoa",
-        effects: "Watery diarrhea, bloating, malabsorption, fatigue.",
-        pharma_cure: "Tinidazole (single dose) or metronidazole (5-7 days) or nitazoxanide",
-        adjunct_natural: "Probiotics may reduce shedding (not curative)"
-    },
-    {
-        name: "Plasmodium falciparum",
-        type: "Protozoa",
-        effects: "Cyclic fever, chills, anemia, cerebral malaria (severe).",
-        pharma_cure: "Artemisinin-based combination therapy (ACT) – prescription only",
-        adjunct_natural: "None; medical emergency"
-    },
-    {
-        name: "Toxoplasma gondii",
-        type: "Protozoa",
-        effects: "Often asymptomatic; in immunocompromised: encephalitis, seizures.",
-        pharma_cure: "Pyrimethamine + sulfadiazine + leucovorin",
-        adjunct_natural: "None"
-    },
-    {
-        name: "Taenia solium (pork tapeworm)",
-        type: "Helminth (tapeworm)",
-        effects: "Intestinal infection; larvae can cause neurocysticercosis (seizures, headaches).",
-        pharma_cure: "Praziquantel (intestinal) OR albendazole + steroids (neurocysticercosis)",
-        adjunct_natural: "Pumpkin seeds (traditional, unproven)"
-    },
-    {
-        name: "Ascaris lumbricoides",
-        type: "Helminth (roundworm)",
-        effects: "Malnutrition, intestinal blockage, cough (larval migration).",
-        pharma_cure: "Albendazole or mebendazole (single dose)",
-        adjunct_natural: "Papaya seeds (small RCT, weak evidence)"
-    },
-    {
-        name: "Enterobius vermicularis (pinworm)",
-        type: "Helminth",
-        effects: "Perianal itching (especially at night), sleep disturbance.",
-        pharma_cure: "Albendazole or mebendazole (single dose, repeat in 2 weeks)",
-        adjunct_natural: "Strict hygiene; no proven natural cure"
-    },
-    {
-        name: "Trichuris trichiura (whipworm)",
-        type: "Helminth",
-        effects: "Bloody diarrhea, rectal prolapse, growth stunting in children.",
-        pharma_cure: "Albendazole or mebendazole (3 days)",
-        adjunct_natural: "None"
-    },
-    {
-        name: "Schistosoma haematobium",
-        type: "Fluke",
-        effects: "Hematuria, bladder fibrosis, increased risk of bladder cancer.",
-        pharma_cure: "Praziquantel",
-        adjunct_natural: "None"
-    },
-    {
-        name: "Trypanosoma cruzi (Chagas)",
-        type: "Protozoa",
-        effects: "Cardiomyopathy, megacolon, heart failure.",
-        pharma_cure: "Benznidazole or nifurtimox (acute/early chronic)",
-        adjunct_natural: "None"
-    },
-    {
-        name: "Leishmania donovani (visceral)",
-        type: "Protozoa",
-        effects: "Fever, weight loss, enlarged liver/spleen (kala-azar).",
-        pharma_cure: "Liposomal amphotericin B",
-        adjunct_natural: "None"
-    },
-    {
-        name: "Echinococcus granulosus (hydatid)",
-        type: "Helminth (tapeworm larva)",
-        effects: "Cysts in liver, lungs; risk of anaphylaxis if ruptured.",
-        pharma_cure: "Albendazole + surgical removal",
-        adjunct_natural: "None"
-    }
+    { name: "Entamoeba histolytica", type: "Protozoa", effects: "Bloody diarrhea, dysentery, liver abscess, abdominal pain.", pharma_cure: "Metronidazole or tinidazole + paromomycin (prescription required)", adjunct_natural: "Garlic (weak in vitro evidence; not a cure)" },
+    { name: "Giardia lamblia", type: "Protozoa", effects: "Watery diarrhea, bloating, malabsorption, fatigue, weight loss.", pharma_cure: "Tinidazole (single dose) or metronidazole (5-7 days) or nitazoxanide", adjunct_natural: "Probiotics may reduce shedding (not curative)" },
+    { name: "Plasmodium falciparum", type: "Protozoa", effects: "Cyclic fever, chills, anemia, cerebral malaria (severe), night sweats.", pharma_cure: "Artemisinin-based combination therapy (ACT) – prescription only", adjunct_natural: "None; medical emergency" },
+    { name: "Toxoplasma gondii", type: "Protozoa", effects: "Often asymptomatic; in immunocompromised: encephalitis, seizures, eye problems.", pharma_cure: "Pyrimethamine + sulfadiazine + leucovorin", adjunct_natural: "None" },
+    { name: "Trypanosoma cruzi (Chagas)", type: "Protozoa", effects: "Cardiomyopathy, megacolon, heart failure, night sweats.", pharma_cure: "Benznidazole or nifurtimox (acute/early chronic)", adjunct_natural: "None" },
+    { name: "Leishmania donovani (visceral)", type: "Protozoa", effects: "Fever, weight loss, enlarged liver/spleen (kala-azar), night sweats.", pharma_cure: "Liposomal amphotericin B", adjunct_natural: "None" },
+    { name: "Leishmania (Viannia) panamensis (cutaneous)", type: "Protozoa", effects: "Skin ulcers, sores, disfiguring scars.", pharma_cure: "Pentavalent antimonials, amphotericin B", adjunct_natural: "Artemisia annua (moderate in vitro activity; limited human data)" },
+    { name: "Cryptosporidium parvum", type: "Protozoa", effects: "Watery diarrhea, stomach cramps, nausea, weight loss (especially in immunocompromised).", pharma_cure: "Nitazoxanide (prescription); supportive care", adjunct_natural: "None; hydration critical" },
+    { name: "Babesia microti", type: "Protozoa", effects: "Fever, chills, sweats, fatigue, hemolytic anemia.", pharma_cure: "Atovaquone + azithromycin or clindamycin + quinine", adjunct_natural: "None" },
+    { name: "Balantidium coli", type: "Protozoa", effects: "Diarrhea, dysentery, abdominal pain (rare; from pigs).", pharma_cure: "Tetracycline or metronidazole", adjunct_natural: "None" },
+    { name: "Cyclospora cayetanensis", type: "Protozoa", effects: "Watery diarrhea, loss of appetite, weight loss, bloating, fatigue.", pharma_cure: "Trimethoprim-sulfamethoxazole", adjunct_natural: "None" },
+    { name: "Cystoisospora belli", type: "Protozoa", effects: "Watery diarrhea, abdominal pain, weight loss (especially in immunocompromised).", pharma_cure: "Trimethoprim-sulfamethoxazole", adjunct_natural: "None" },
+    { name: "Sarcocystis spp.", type: "Protozoa", effects: "Diarrhea, abdominal pain, muscle pain (rare).", pharma_cure: "No standard treatment; supportive care", adjunct_natural: "None" },
+    { name: "Ascaris lumbricoides", type: "Helminth (roundworm)", effects: "Malnutrition, intestinal blockage, cough (larval migration), vomiting.", pharma_cure: "Albendazole or mebendazole (single dose)", adjunct_natural: "Papaya seeds (small RCT, weak evidence)" },
+    { name: "Enterobius vermicularis (pinworm)", type: "Helminth (roundworm)", effects: "Perianal itching (especially at night), sleep disturbance.", pharma_cure: "Albendazole or mebendazole (single dose, repeat in 2 weeks)", adjunct_natural: "Strict hygiene; no proven natural cure" },
+    { name: "Hookworm (Necator americanus / Ancylostoma duodenale)", type: "Helminth (roundworm)", effects: "Iron-deficiency anemia, fatigue, abdominal pain, weight loss.", pharma_cure: "Albendazole or mebendazole (single dose)", adjunct_natural: "Iron supplementation (for anemia)" },
+    { name: "Strongyloides stercoralis", type: "Helminth (roundworm)", effects: "Abdominal pain, diarrhea, weight loss, rash; hyperinfection in immunocompromised.", pharma_cure: "Ivermectin (prescription)", adjunct_natural: "None" },
+    { name: "Trichuris trichiura (whipworm)", type: "Helminth (roundworm)", effects: "Bloody diarrhea, rectal prolapse, growth stunting in children.", pharma_cure: "Albendazole or mebendazole (3 days)", adjunct_natural: "None" },
+    { name: "Trichinella spiralis", type: "Helminth (roundworm)", effects: "Muscle pain, fever, facial swelling, eosinophilia (from undercooked meat).", pharma_cure: "Albendazole + corticosteroids for severe symptoms", adjunct_natural: "None" },
+    { name: "Anisakis simplex", type: "Helminth (roundworm)", effects: "Abdominal pain, nausea, vomiting, allergic reactions (from raw/undercooked fish).", pharma_cure: "Endoscopic removal; albendazole", adjunct_natural: "None" },
+    { name: "Dracunculus medinensis (Guinea worm)", type: "Helminth (roundworm)", effects: "Painful skin blisters, emerging worm (near eradication).", pharma_cure: "Slow extraction; no drug", adjunct_natural: "None" },
+    { name: "Taenia solium (pork tapeworm)", type: "Helminth (tapeworm)", effects: "Intestinal infection; larvae can cause neurocysticercosis (seizures, headaches).", pharma_cure: "Praziquantel (intestinal) OR albendazole + steroids (neurocysticercosis)", adjunct_natural: "Pumpkin seeds (traditional, unproven)" },
+    { name: "Taenia saginata (beef tapeworm)", type: "Helminth (tapeworm)", effects: "Mild abdominal discomfort, weight loss, anal itching.", pharma_cure: "Praziquantel or niclosamide", adjunct_natural: "None" },
+    { name: "Diphyllobothrium latum (fish tapeworm)", type: "Helminth (tapeworm)", effects: "Vitamin B12 deficiency, megaloblastic anemia, abdominal discomfort.", pharma_cure: "Praziquantel", adjunct_natural: "None" },
+    { name: "Hymenolepis nana (dwarf tapeworm)", type: "Helminth (tapeworm)", effects: "Diarrhea, abdominal pain (most common tapeworm in children).", pharma_cure: "Praziquantel", adjunct_natural: "None" },
+    { name: "Echinococcus granulosus (hydatid)", type: "Helminth (tapeworm larva)", effects: "Cysts in liver, lungs; risk of anaphylaxis if ruptured, cough.", pharma_cure: "Albendazole + surgical removal", adjunct_natural: "None" },
+    { name: "Schistosoma haematobium", type: "Helminth (fluke)", effects: "Hematuria, bladder fibrosis, increased risk of bladder cancer.", pharma_cure: "Praziquantel", adjunct_natural: "None" },
+    { name: "Schistosoma mansoni", type: "Helminth (fluke)", effects: "Hepatosplenomegaly, portal hypertension, bloody diarrhea.", pharma_cure: "Praziquantel", adjunct_natural: "None" },
+    { name: "Paragonimus westermani (lung fluke)", type: "Helminth (fluke)", effects: "Chronic cough, chest pain, fever, coughing up blood.", pharma_cure: "Praziquantel", adjunct_natural: "None" },
+    { name: "Clonorchis sinensis (Chinese liver fluke)", type: "Helminth (fluke)", effects: "Abdominal pain, cholangitis, liver fibrosis, cholangiocarcinoma risk.", pharma_cure: "Praziquantel", adjunct_natural: "None" },
+    { name: "Sarcoptes scabiei (scabies mite)", type: "Ectoparasite", effects: "Intense itching, skin rash, burrows in skin.", pharma_cure: "Permethrin cream, ivermectin", adjunct_natural: "None" },
+    { name: "Demodex folliculorum", type: "Ectoparasite", effects: "Rosacea, blepharitis, follicular scaling (overgrowth in immunocompromised).", pharma_cure: "Metronidazole, permethrin, tea tree oil", adjunct_natural: "Tea tree oil (clinical evidence for Demodex)" }
 ];
