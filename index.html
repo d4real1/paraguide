@@ -3,463 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ParaGuide+ – Parasite & Natural Remedy Info</title>
+    <title>ParaGuide+ – Complete Parasite Reference</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        body.light {
-            background: #f0f7f0;
-            color: #111;
-        }
-        body.dark {
-            background: #1a2a1f;
-            color: #e0e0e0;
-        }
-        body.large-text {
-            font-size: 1.2rem;
-        }
-        body.large-text button, body.large-text select, body.large-text input {
-            font-size: 1.2rem;
-            padding: 12px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        body.dark .container {
-            background: #2a3a27;
-            color: #f0f0f0;
-        }
-        .header {
-            background: #1e3a2f;
-            color: white;
-            padding: 20px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-        .controls {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        .controls button {
-            background: #2e5a4a;
-            border: none;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        .header p {
-            margin: 8px 0 0;
-            opacity: 0.9;
-            width: 100%;
-        }
-        .content {
-            padding: 24px;
-        }
-        .warning {
-            background: #fff3e0;
-            border-left: 5px solid #e67e22;
-            padding: 12px 16px;
-            margin-bottom: 24px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-        body.dark .warning {
-            background: #3e2a1a;
-            color: #ffd966;
-            border-left-color: #f39c12;
-        }
-        .toolbar {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .toolbar button {
-            background: #1e3a2f;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 40px;
-            cursor: pointer;
-        }
-        body.dark .toolbar button {
-            background: #3e6a4f;
-        }
-        .tab-buttons {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
-            border-bottom: 1px solid #ddd;
-            flex-wrap: wrap;
-        }
-        body.dark .tab-buttons {
-            border-bottom-color: #555;
-        }
-        .tab-btn {
-            background: none;
-            border: none;
-            padding: 10px 16px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 20px 20px 0 0;
-            transition: 0.2s;
-        }
-        .tab-btn.active {
-            background: #1e3a2f;
-            color: white;
-        }
-        body.dark .tab-btn.active {
-            background: #3e6a4f;
-        }
-        .tab-pane {
-            display: none;
-        }
-        .tab-pane.active {
-            display: block;
-        }
-        .symptom-group {
-            margin-bottom: 20px;
-        }
-        label {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 8px;
-        }
-        select, input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            font-size: 1rem;
-        }
-        body.dark select, body.dark input {
-            background: #3a4a37;
-            color: #fff;
-            border-color: #6a8a67;
-        }
-        button {
-            background: #1e3a2f;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 40px;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 12px;
-            width: 100%;
-        }
-        .result {
-            margin-top: 24px;
-            background: #f9f9f9;
-            padding: 16px;
-            border-radius: 20px;
-            border-left: 4px solid #1e3a2f;
-        }
-        body.dark .result {
-            background: #2a3a27;
-            border-left-color: #6a9a67;
-        }
-        .parasite-name {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #1e3a2f;
-        }
-        body.dark .parasite-name {
-            color: #aaffaa;
-        }
-        hr {
-            margin: 16px 0;
-        }
-        .footer {
-            text-align: center;
-            font-size: 0.75rem;
-            color: #666;
-            padding: 16px;
-            border-top: 1px solid #eee;
-        }
-        body.dark .footer {
-            color: #aaa;
-            border-top-color: #3a5a37;
-        }
-        @media (max-width: 600px) {
-            .content { padding: 16px; }
-            .controls button { font-size: 0.7rem; }
-        }
+        * { box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; transition: background 0.3s, color 0.3s; }
+        body.light { background: #f0f7f0; color: #111; }
+        body.dark { background: #1a2a1f; color: #e0e0e0; }
+        body.large-text { font-size: 1.2rem; }
+        body.large-text button, body.large-text select, body.large-text input { font-size: 1.2rem; padding: 12px; }
+        .container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 28px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        body.dark .container { background: #2a3a27; }
+        .header { background: #1e3a2f; color: white; padding: 20px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; }
+        .header h1 { margin: 0; }
+        .controls { display: flex; gap: 8px; }
+        .controls button { background: #2e5a4a; border: none; color: white; padding: 6px 12px; border-radius: 20px; cursor: pointer; }
+        .content { padding: 24px; }
+        .warning { background: #fff3e0; border-left: 5px solid #e67e22; padding: 12px 16px; margin-bottom: 24px; border-radius: 12px; }
+        body.dark .warning { background: #3e2a1a; color: #ffd966; border-left-color: #f39c12; }
+        .toolbar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; justify-content: space-between; }
+        .toolbar button { background: #1e3a2f; color: white; border: none; padding: 8px 16px; border-radius: 40px; cursor: pointer; }
+        body.dark .toolbar button { background: #3e6a4f; }
+        .tab-buttons { display: flex; gap: 8px; border-bottom: 1px solid #ddd; flex-wrap: wrap; margin-bottom: 24px; }
+        .tab-btn { background: none; border: none; padding: 10px 16px; cursor: pointer; border-radius: 20px 20px 0 0; }
+        .tab-btn.active { background: #1e3a2f; color: white; }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        .symptom-group { margin-bottom: 20px; }
+        label { font-weight: 600; display: block; margin-bottom: 8px; }
+        select, input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 12px; }
+        body.dark select, body.dark input { background: #3a4a37; color: #fff; border-color: #6a8a67; }
+        button { background: #1e3a2f; color: white; border: none; padding: 12px 20px; border-radius: 40px; cursor: pointer; margin-top: 12px; width: 100%; }
+        .result { margin-top: 24px; background: #f9f9f9; padding: 16px; border-radius: 20px; border-left: 4px solid #1e3a2f; }
+        body.dark .result { background: #2a3a27; border-left-color: #6a9a67; }
+        .parasite-name { font-weight: bold; font-size: 1.3rem; color: #1e3a2f; margin-bottom: 8px; }
+        body.dark .parasite-name { color: #aaffaa; }
+        .body-location { font-style: italic; margin-bottom: 8px; }
+        .treatment-section { background: #e8f0e8; padding: 8px 12px; border-radius: 16px; margin: 12px 0; }
+        body.dark .treatment-section { background: #3a5a3a; }
+        .treatment-category { font-weight: bold; display: inline-block; width: 140px; }
+        hr { margin: 16px 0; }
+        .footer { text-align: center; font-size: 0.75rem; color: #666; padding: 16px; border-top: 1px solid #eee; }
+        @media (max-width: 600px) { .content { padding: 16px; } }
     </style>
 </head>
 <body class="light">
 <div class="container">
     <div class="header">
-        <div>
-            <h1>🦠 ParaGuide+</h1>
-            <p>Symptom-based parasite info, evidence-based cures & natural remedies</p>
-        </div>
-        <div class="controls">
-            <button id="darkModeToggle">🌙 Dark</button>
-            <button id="largeTextToggle">🔤 Large text</button>
-        </div>
+        <div><h1>🦠 ParaGuide+</h1><p>52 parasites – symptoms, body effects & treatments</p></div>
+        <div class="controls"><button id="darkModeToggle">🌙 Dark</button><button id="largeTextToggle">🔤 Large text</button></div>
     </div>
     <div class="content">
-        <div class="warning">
-            ⚠️ <strong>Medical disclaimer:</strong> This tool is for educational purposes only. It does not provide medical diagnosis or treatment advice. Always consult a qualified healthcare professional for any health concerns or before taking any medication.
-        </div>
-
+        <div class="warning">⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.</div>
         <div class="toolbar">
             <button id="doctorBtn">🏥 Find doctor near me</button>
             <button id="printBtn">🖨️ Printable summary</button>
-            <button id="feedbackBtn">📝 Send feedback</button>
+            <button id="feedbackBtn">📝 Feedback</button>
         </div>
-
         <div class="tab-buttons">
             <button class="tab-btn active" data-tab="symptom">🔍 By Symptoms</button>
             <button class="tab-btn" data-tab="search">🔎 Search Parasite</button>
             <button class="tab-btn" data-tab="all">📋 All Parasites</button>
-            <button class="tab-btn" data-tab="remedies">🌿 Natural Remedies</button>
+            <button class="tab-btn" data-tab="remedies">🌿 Remedies Library</button>
         </div>
 
         <!-- Symptom tab -->
         <div id="symptom-tab" class="tab-pane active">
             <div class="symptom-group">
-                <label>Select your primary symptom(s):</label>
+                <label>Select a symptom to see which parasites cause it and how to treat:</label>
                 <select id="symptomSelect">
-                    <option value="">-- Select a symptom --</option>
+                    <option value="">-- Select symptom --</option>
                     <option value="diarrhea">💧 Diarrhea (watery)</option>
-                    <option value="bloody_stool">🩸 Bloody stool or dysentery</option>
-                    <option value="abdominal_pain">🤰 Abdominal pain / bloating</option>
-                    <option value="anal_itching">🦷 Anal itching (worse at night)</option>
-                    <option value="fever_chills">🌡️ Fever & chills (cyclic)</option>
-                    <option value="fatigue_anemia">😴 Fatigue, pallor (anemia)</option>
-                    <option value="seizures">🧠 Seizures or neurological symptoms</option>
-                    <option value="skin_ulcers">🩹 Skin ulcers or sores</option>
-                    <option value="cough_cysts">🍃 Cough, liver cysts</option>
-                    <option value="weight_loss">⚖️ Unexplained weight loss</option>
+                    <option value="bloody_stool">🩸 Bloody stool</option>
+                    <option value="abdominal_pain">🤰 Abdominal pain</option>
+                    <option value="anal_itching">🦷 Anal itching</option>
+                    <option value="fever_chills">🌡️ Fever & chills</option>
+                    <option value="fatigue_anemia">😴 Fatigue / anemia</option>
+                    <option value="seizures">🧠 Seizures</option>
+                    <option value="skin_ulcers">🩹 Skin ulcers</option>
+                    <option value="cough">🍃 Chronic cough</option>
+                    <option value="weight_loss">⚖️ Weight loss</option>
                     <option value="night_sweats">🌙 Night sweats</option>
                     <option value="vomiting">🤢 Nausea/vomiting</option>
-                    <option value="eye_problems">👁️ Eye redness or vision changes</option>
-                    <option value="muscle_pain">💪 Muscle pain / swelling</option>
-                    <option value="rash_itching">🪲 Skin rash, burrows, intense itching</option>
+                    <option value="eye_problems">👁️ Eye problems</option>
+                    <option value="muscle_pain">💪 Muscle pain</option>
+                    <option value="rash_itching">🪲 Rash / itching</option>
+                    <option value="liver_cysts">🫀 Liver cysts</option>
+                    <option value="heart_failure">❤️ Heart failure</option>
                 </select>
             </div>
-            <button id="symptomBtn">Show possible parasites</button>
+            <button id="symptomBtn">Show possible parasites & treatments</button>
             <div id="symptomResult" class="result" style="display:none;"></div>
         </div>
 
         <!-- Search tab -->
         <div id="search-tab" class="tab-pane">
-            <div class="symptom-group">
-                <label>Enter parasite name (partial allowed):</label>
-                <input type="text" id="searchInput" placeholder="e.g., Giardia, tapeworm, Ascaris">
-            </div>
+            <div class="symptom-group"><label>Enter parasite name:</label><input type="text" id="searchInput" placeholder="e.g., Giardia, Taenia, Schistosoma"></div>
             <button id="searchBtn">Search</button>
             <div id="searchResult" class="result" style="display:none;"></div>
         </div>
 
         <!-- All Parasites tab -->
-        <div id="all-tab" class="tab-pane">
-            <div id="allResult" class="result"></div>
-        </div>
+        <div id="all-tab" class="tab-pane"><div id="allResult" class="result"></div></div>
 
-        <!-- Natural Remedies tab -->
+        <!-- Remedies Library tab (separate natural remedies list) -->
         <div id="remedies-tab" class="tab-pane">
-            <div class="symptom-group">
-                <label>Search natural remedies by parasite name or remedy name:</label>
-                <input type="text" id="remedySearchInput" placeholder="e.g., Giardia, berberine, wormwood">
-            </div>
-            <button id="remedySearchBtn">🔍 Search natural remedies</button>
+            <div class="symptom-group"><label>Search natural remedies by name or target parasite:</label><input type="text" id="remedySearchInput" placeholder="e.g., berberine, wormwood, Giardia"></div>
+            <button id="remedySearchBtn">Search remedies</button>
             <div id="remedyResult" class="result" style="display:none;"></div>
-            <div class="warning" style="margin-top: 20px;">
-                ⚠️ <strong>Natural remedy disclaimer:</strong> Natural remedies are NOT substitutes for prescription antiparasitic drugs. Evidence levels vary. Always consult a physician before using any herbal treatment.
-            </div>
+            <div class="warning">🌿 Natural remedies are not substitutes for prescription drugs. Many have limited evidence.</div>
         </div>
     </div>
-    <div class="footer">
-        Data sources: CDC, WHO, peer-reviewed literature. Not a substitute for professional medical advice. | ParaGuide+ v3.0
-    </div>
+    <div class="footer">Sources: CDC, WHO, peer-reviewed literature, historical texts. | ParaGuide+ v5.0</div>
 </div>
-
 <script src="parasite_data.js"></script>
 <script src="natural_remedies.js"></script>
 <script>
-    // Toggles
     const body = document.body;
-    const darkToggle = document.getElementById('darkModeToggle');
-    const largeToggle = document.getElementById('largeTextToggle');
-
-    darkToggle.addEventListener('click', () => {
-        if (body.classList.contains('light')) {
-            body.classList.remove('light');
-            body.classList.add('dark');
-            darkToggle.textContent = '☀️ Light';
-        } else {
-            body.classList.remove('dark');
-            body.classList.add('light');
-            darkToggle.textContent = '🌙 Dark';
-        }
-    });
-
-    largeToggle.addEventListener('click', () => {
+    document.getElementById('darkModeToggle').onclick = () => {
+        body.classList.toggle('light'); body.classList.toggle('dark');
+        document.getElementById('darkModeToggle').textContent = body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
+    };
+    document.getElementById('largeTextToggle').onclick = () => {
         body.classList.toggle('large-text');
-        largeToggle.textContent = body.classList.contains('large-text') ? '🔤 Normal text' : '🔤 Large text';
-    });
-
-    // Doctor near me
-    document.getElementById('doctorBtn').addEventListener('click', () => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-                window.open(`https://www.google.com/maps/search/doctor+infectious+disease+parasitologist/@${lat},${lng},12z`, '_blank');
-            }, () => {
-                window.open('https://www.google.com/maps/search/doctor+infectious+disease+parasitologist', '_blank');
-            });
-        } else {
-            window.open('https://www.google.com/maps/search/doctor+infectious+disease+parasitologist', '_blank');
-        }
-    });
-
-    // Printable summary
-    document.getElementById('printBtn').addEventListener('click', () => {
-        let printContent = '<html><head><title>ParaGuide+ Parasite Summary</title><style>body{font-family:sans-serif; margin:2rem;} h1{color:#1e3a2f;} table{border-collapse:collapse; width:100%;} th,td{border:1px solid #ccc; padding:8px; text-align:left;} th{background:#1e3a2f; color:white;}</style></head><body>';
-        printContent += '<h1>🦠 ParaGuide+ – Complete Parasite Reference</h1>';
-        printContent += '<p>Generated on ' + new Date().toLocaleDateString() + ' – Educational purposes only. Consult a doctor.</p>';
-        printContent += '<table><thead><tr><th>Parasite</th><th>Type</th><th>Effects</th><th>Pharmaceutical Cure</th><th>Adjunct/Natural</th></tr></thead><tbody>';
+        document.getElementById('largeTextToggle').textContent = body.classList.contains('large-text') ? '🔤 Normal' : '🔤 Large';
+    };
+    document.getElementById('doctorBtn').onclick = () => {
+        if (navigator.geolocation) navigator.geolocation.getCurrentPosition(p => window.open(`https://www.google.com/maps/search/doctor+infectious+disease/@${p.coords.latitude},${p.coords.longitude},12z`), () => window.open('https://www.google.com/maps/search/infectious+disease+doctor'));
+        else window.open('https://www.google.com/maps/search/infectious+disease+doctor');
+    };
+    document.getElementById('printBtn').onclick = () => {
+        let html = '<html><head><title>Parasite Reference</title><style>body{font-family:sans-serif;} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ccc;padding:6px}</style></head><body><h1>ParaGuide+ Parasite List</h1>';
+        html += '<table><tr><th>Parasite</th><th>Location</th><th>Effects</th><th>Doctor Rx</th><th>Natural</th><th>Historical</th></tr>';
         window.parasiteData.forEach(p => {
-            printContent += `<tr><td>${p.name}</td><td>${p.type}</td><td>${p.effects}</td><td>${p.pharma_cure}</td><td>${p.adjunct_natural || 'None'}</td></tr>`;
+            html += `<tr><td>${p.name}</td><td>${p.body_location}</td><td>${p.effects_why}</td><td>${p.treatments.doctor}</td><td>${p.treatments.natural}</td><td>${p.treatments.historical}</td></tr>`;
         });
-        printContent += '</tbody></table><p><strong>Disclaimer:</strong> Not medical advice. Consult a doctor.</p></body></html>';
-        const printWindow = window.open('', '_blank');
-        printWindow.document.write(printContent);
-        printWindow.document.close();
-        printWindow.print();
-    });
+        html += '</table><p>Not medical advice.</p></body></html>';
+        let w = window.open(); w.document.write(html); w.document.close(); w.print();
+    };
+    document.getElementById('feedbackBtn').onclick = () => alert('Replace with your Google Form link in code.');
 
-    // Feedback button (replace link)
-    document.getElementById('feedbackBtn').addEventListener('click', () => {
-        window.open('https://forms.gle/your-feedback-form-link', '_blank');
-        alert('To enable feedback, create a Google Form and replace the link in index.html.');
-    });
-
-    // Parasite display
     function displayParasite(p) {
-        let html = `<div class="parasite-name">🪱 ${p.name} (${p.type})</div>`;
-        html += `<div><strong>Effects:</strong> ${p.effects}</div>`;
-        html += `<div><strong>Primary pharmaceutical cure:</strong> ${p.pharma_cure}</div>`;
-        if (p.adjunct_natural) html += `<div><strong>Adjunct (low evidence):</strong> ${p.adjunct_natural}</div>`;
-        html += `<div><strong>⚠️ Prescription required.</strong></div><hr>`;
+        let html = `<div class="parasite-name">🪱 ${p.name}</div>`;
+        html += `<div class="body-location">📍 Lives in: ${p.body_location} — ${p.why_there}</div>`;
+        html += `<div><strong>Effects on body:</strong> ${p.effects_why}</div>`;
+        html += `<div><strong>Symptoms:</strong> ${p.symptoms}</div>`;
+        html += `<div class="treatment-section"><span class="treatment-category">💊 Doctor’s prescription:</span> ${p.treatments.doctor}</div>`;
+        if (p.treatments.natural) html += `<div class="treatment-section"><span class="treatment-category">🌿 Natural remedies:</span> ${p.treatments.natural}</div>`;
+        if (p.treatments.historical) html += `<div class="treatment-section"><span class="treatment-category">📜 Historical / traditional:</span> ${p.treatments.historical}</div>`;
+        if (p.treatments.untested) html += `<div class="treatment-section"><span class="treatment-category">🔬 Untested / experimental:</span> ${p.treatments.untested}</div>`;
+        html += `<hr>`;
         return html;
     }
 
-    function searchParasite(query) {
-        const q = query.toLowerCase();
-        const matches = window.parasiteData.filter(p => p.name.toLowerCase().includes(q));
-        if (!matches.length) return "<p>No parasite found.</p>";
+    function searchParasite(q) { let matches = window.parasiteData.filter(p => p.name.toLowerCase().includes(q.toLowerCase())); return matches.length ? matches.map(displayParasite).join('') : '<p>No parasite found.</p>'; }
+    function getParasitesBySymptom(symptom) {
+        let matches = window.parasiteData.filter(p => p.symptom_keywords && p.symptom_keywords.includes(symptom));
+        if (!matches.length) return '<p>No parasites found for this symptom. Consult a doctor.</p>';
         return matches.map(displayParasite).join('');
     }
+    function displayRemedy(r) { return `<div class="parasite-name">🌿 ${r.name}</div><div><strong>Targets:</strong> ${r.target}</div><div><strong>Evidence:</strong> ${r.evidence}</div><div><strong>Safety:</strong> ${r.safety}</div><hr>`; }
+    function searchRemedies(q) { let m = window.naturalRemedies.filter(r => r.name.toLowerCase().includes(q.toLowerCase()) || r.target.toLowerCase().includes(q.toLowerCase())); return m.length ? m.map(displayRemedy).join('') : '<p>No remedies found.</p>'; }
 
-    function getParasitesBySymptom(symptom) {
-        const mapping = {
-            "diarrhea": ["Giardia lamblia", "Entamoeba histolytica", "Cryptosporidium parvum", "Cyclospora cayetanensis", "Balantidium coli", "Cystoisospora belli", "Sarcocystis spp."],
-            "bloody_stool": ["Entamoeba histolytica", "Trichuris trichiura", "Schistosoma mansoni", "Balantidium coli"],
-            "abdominal_pain": ["Ascaris lumbricoides", "Taenia solium", "Giardia lamblia", "Strongyloides stercoralis", "Anisakis simplex", "Hymenolepis nana", "Clonorchis sinensis"],
-            "anal_itching": ["Enterobius vermicularis", "Taenia saginata"],
-            "fever_chills": ["Plasmodium falciparum", "Trypanosoma cruzi", "Leishmania donovani", "Babesia microti", "Paragonimus westermani", "Schistosoma haematobium"],
-            "fatigue_anemia": ["Plasmodium falciparum", "Hookworm", "Trichuris trichiura", "Babesia microti", "Diphyllobothrium latum"],
-            "seizures": ["Taenia solium (neurocysticercosis)", "Toxoplasma gondii"],
-            "skin_ulcers": ["Leishmania panamensis", "Leishmania donovani", "Onchocerca volvulus", "Dracunculus medinensis"],
-            "cough_cysts": ["Echinococcus granulosus", "Paragonimus westermani", "Ascaris lumbricoides"],
-            "weight_loss": ["Giardia lamblia", "Cryptosporidium parvum", "Strongyloides stercoralis", "Hookworm", "Cyclospora cayetanensis", "Cystoisospora belli"],
-            "night_sweats": ["Plasmodium falciparum", "Leishmania donovani", "Trypanosoma cruzi", "Babesia microti"],
-            "vomiting": ["Giardia lamblia", "Entamoeba histolytica", "Ascaris lumbricoides", "Anisakis simplex"],
-            "eye_problems": ["Toxoplasma gondii", "Onchocerca volvulus", "Loa loa"],
-            "muscle_pain": ["Trichinella spiralis", "Sarcocystis spp."],
-            "rash_itching": ["Sarcoptes scabiei", "Demodex folliculorum", "Onchocerca volvulus", "Hookworm"]
-        };
-        let suggested = mapping[symptom] || [];
-        let matched = window.parasiteData.filter(p => suggested.some(name => p.name.toLowerCase().includes(name.toLowerCase())));
-        if (!matched.length) return "<p>No common parasite matches this symptom. Consult a doctor.</p>";
-        return matched.map(displayParasite).join('');
-    }
-
-    // Natural remedies
-    function displayRemedy(r) {
-        let html = `<div class="parasite-name">🌱 ${r.name}</div>`;
-        html += `<div><strong>Target parasite(s):</strong> ${r.parasite_target}</div>`;
-        html += `<div><strong>Evidence level:</strong> ${r.evidence_level}</div>`;
-        html += `<div><strong>Key finding:</strong> ${r.key_finding}</div>`;
-        html += `<div><strong>Safety notes:</strong> ${r.safety_notes}</div>`;
-        html += `<div><strong>Source:</strong> ${r.source}</div><hr>`;
-        return html;
-    }
-
-    function searchRemedies(query) {
-        const q = query.toLowerCase();
-        const matches = window.naturalRemedies.filter(r => r.name.toLowerCase().includes(q) || r.parasite_target.toLowerCase().includes(q));
-        if (!matches.length) return "<p>No natural remedies found for that search.</p>";
-        return matches.map(displayRemedy).join('');
-    }
-
-    // Tab switching and listeners
     document.addEventListener('DOMContentLoaded', () => {
-        const tabs = document.querySelectorAll('.tab-btn');
-        const panes = {
-            symptom: document.getElementById('symptom-tab'),
-            search: document.getElementById('search-tab'),
-            all: document.getElementById('all-tab'),
-            remedies: document.getElementById('remedies-tab')
-        };
-        tabs.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.dataset.tab;
-                tabs.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                Object.keys(panes).forEach(id => panes[id].classList.remove('active'));
-                panes[tabId].classList.add('active');
-                if (tabId === 'all') document.getElementById('allResult').innerHTML = window.parasiteData.map(displayParasite).join('');
-            });
+        const tabs = { symptom: document.getElementById('symptom-tab'), search: document.getElementById('search-tab'), all: document.getElementById('all-tab'), remedies: document.getElementById('remedies-tab') };
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.onclick = () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            Object.keys(tabs).forEach(k => tabs[k].classList.remove('active'));
+            tabs[btn.dataset.tab].classList.add('active');
+            if (btn.dataset.tab === 'all') document.getElementById('allResult').innerHTML = window.parasiteData.map(displayParasite).join('');
         });
-
-        document.getElementById('symptomBtn').addEventListener('click', () => {
-            const symptom = document.getElementById('symptomSelect').value;
-            if (!symptom) { document.getElementById('symptomResult').innerHTML = '<p>Select a symptom.</p>'; document.getElementById('symptomResult').style.display = 'block'; return; }
-            document.getElementById('symptomResult').innerHTML = getParasitesBySymptom(symptom);
-            document.getElementById('symptomResult').style.display = 'block';
-        });
-
-        document.getElementById('searchBtn').addEventListener('click', () => {
-            const query = document.getElementById('searchInput').value.trim();
-            if (!query) { document.getElementById('searchResult').innerHTML = '<p>Enter a parasite name.</p>'; document.getElementById('searchResult').style.display = 'block'; return; }
-            document.getElementById('searchResult').innerHTML = searchParasite(query);
-            document.getElementById('searchResult').style.display = 'block';
-        });
-
-        document.getElementById('remedySearchBtn').addEventListener('click', () => {
-            const query = document.getElementById('remedySearchInput').value.trim();
-            if (!query) { document.getElementById('remedyResult').innerHTML = '<p>Enter a parasite or remedy name.</p>'; document.getElementById('remedyResult').style.display = 'block'; return; }
-            document.getElementById('remedyResult').innerHTML = searchRemedies(query);
-            document.getElementById('remedyResult').style.display = 'block';
-        });
+        document.getElementById('symptomBtn').onclick = () => { let s = document.getElementById('symptomSelect').value; if(s) document.getElementById('symptomResult').innerHTML = getParasitesBySymptom(s), document.getElementById('symptomResult').style.display='block'; else alert('Select a symptom'); };
+        document.getElementById('searchBtn').onclick = () => { let q = document.getElementById('searchInput').value.trim(); if(q) document.getElementById('searchResult').innerHTML = searchParasite(q), document.getElementById('searchResult').style.display='block'; };
+        document.getElementById('remedySearchBtn').onclick = () => { let q = document.getElementById('remedySearchInput').value.trim(); if(q) document.getElementById('remedyResult').innerHTML = searchRemedies(q), document.getElementById('remedyResult').style.display='block'; };
     });
 </script>
 </body>
-</html>
+                </html>
