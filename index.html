@@ -52,7 +52,10 @@
         <div class="controls"><button id="darkModeToggle">🌙 Dark</button><button id="largeTextToggle">🔤 Large text</button></div>
     </div>
     <div class="content">
-        <div class="warning">⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.</div>
+        <div class="warning">
+            ⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.<br>
+            ⚠️ <strong>No single cure kills all parasites.</strong> Treatment depends on the specific parasite identified by a doctor.
+        </div>
         <div class="toolbar">
             <button id="doctorBtn">🏥 Find doctor near me</button>
             <button id="printBtn">🖨️ Printable summary</button>
@@ -65,7 +68,6 @@
             <button class="tab-btn" data-tab="remedies">🌿 Remedies Library</button>
         </div>
 
-        <!-- Symptom tab -->
         <div id="symptom-tab" class="tab-pane active">
             <div class="symptom-group">
                 <label>Select a symptom to see which parasites cause it and how to treat:</label>
@@ -94,17 +96,14 @@
             <div id="symptomResult" class="result" style="display:none;"></div>
         </div>
 
-        <!-- Search tab -->
         <div id="search-tab" class="tab-pane">
             <div class="symptom-group"><label>Enter parasite name:</label><input type="text" id="searchInput" placeholder="e.g., Giardia, Taenia, Schistosoma"></div>
             <button id="searchBtn">Search</button>
             <div id="searchResult" class="result" style="display:none;"></div>
         </div>
 
-        <!-- All Parasites tab -->
         <div id="all-tab" class="tab-pane"><div id="allResult" class="result"></div></div>
 
-        <!-- Remedies Library tab (separate natural remedies list) -->
         <div id="remedies-tab" class="tab-pane">
             <div class="symptom-group"><label>Search natural remedies by name or target parasite:</label><input type="text" id="remedySearchInput" placeholder="e.g., berberine, wormwood, Giardia"></div>
             <button id="remedySearchBtn">Search remedies</button>
@@ -131,12 +130,12 @@
         else window.open('https://www.google.com/maps/search/infectious+disease+doctor');
     };
     document.getElementById('printBtn').onclick = () => {
-        let html = '<html><head><title>Parasite Reference</title><style>body{font-family:sans-serif;} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ccc;padding:6px}</style></head><body><h1>ParaGuide+ Parasite List</h1>';
-        html += '<table><tr><th>Parasite</th><th>Location</th><th>Effects</th><th>Doctor Rx</th><th>Natural</th><th>Historical</th></tr>';
+        let html = '<html><head><title>Parasite Reference</title><style>body{font-family:sans-serif;} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ccc;padding:6px}</style></head><body><h1>ParaGuide+ Parasite List</h1><p>⚠️ No single cure kills all parasites. Treatment depends on the specific parasite.</p>';
+        html += '<table><th>Parasite</th><th>Location</th><th>Effects</th><th>Doctor Rx</th><th>Natural</th><th>Historical</th></tr>';
         window.parasiteData.forEach(p => {
             html += `<tr><td>${p.name}</td><td>${p.body_location}</td><td>${p.effects_why}</td><td>${p.treatments.doctor}</td><td>${p.treatments.natural}</td><td>${p.treatments.historical}</td></tr>`;
         });
-        html += '</table><p>Not medical advice.</p></body></html>';
+        html += '</table><p>Not medical advice. Consult a doctor.</p></body></html>';
         let w = window.open(); w.document.write(html); w.document.close(); w.print();
     };
     document.getElementById('feedbackBtn').onclick = () => alert('Replace with your Google Form link in code.');
@@ -178,4 +177,4 @@
     });
 </script>
 </body>
-                </html>
+</html>
