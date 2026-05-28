@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- PERMANENT disclaimer (no dismiss) -->
         <div id="warningBanner" class="warning-banner">
             <div class="warning-content">
                 <span>⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.<br>
@@ -92,9 +91,11 @@
                         <input type="text" id="remedySearchInput" placeholder="Search remedy, target parasite..." aria-label="Search remedies">
                         <select id="remedySortSelect" aria-label="Sort remedies">
                             <option value="evidence">Sort by evidence (strongest first)</option>
+                            <option value="safety">Sort by safety & evidence (safest first)</option>
                             <option value="name">Sort by name</option>
                         </select>
                         <button id="remedySearchBtn">Filter</button>
+                        <button id="compareRemediesBtn" class="secondary-btn">🔍 Compare selected (0)</button>
                     </div>
                     <div id="remedyTableContainer"></div>
                     <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">⬆ Top</button>
@@ -116,11 +117,20 @@
             <div id="modalBody"></div>
         </div>
     </div>
+
     <div id="compareModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="compareTitle" style="display:none;">
         <div class="modal-content wide">
             <span class="close-compare-modal" aria-label="Close compare modal">&times;</span>
             <h2 id="compareTitle">Compare selected parasites</h2>
             <div id="compareTable"></div>
+        </div>
+    </div>
+
+    <div id="compareRemediesModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="compareRemediesTitle" style="display:none;">
+        <div class="modal-content wide">
+            <span class="close-remedies-modal" aria-label="Close compare remedies">&times;</span>
+            <h2 id="compareRemediesTitle">Compare natural remedies</h2>
+            <div id="compareRemediesTable"></div>
         </div>
     </div>
 
