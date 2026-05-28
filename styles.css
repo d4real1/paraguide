@@ -21,7 +21,9 @@ body.large-text {
     font-size: 1.2rem;
 }
 
-body.large-text button, body.large-text select, body.large-text input {
+body.large-text button, 
+body.large-text select, 
+body.large-text input {
     font-size: 1.2rem;
     padding: 12px;
 }
@@ -39,16 +41,13 @@ body.dark .app-container {
     background: #2a3a27;
 }
 
-/* Warning banner */
+/* Warning banner - permanent */
 .warning-banner {
     background: #fff3e0;
     border-left: 6px solid #e67e22;
     padding: 12px 20px;
     margin: 16px 20px 0;
     border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 body.dark .warning-banner {
@@ -58,21 +57,7 @@ body.dark .warning-banner {
 }
 
 .warning-content {
-    flex: 1;
     font-size: 0.85rem;
-}
-
-.dismiss-btn {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: inherit;
-    padding: 0 8px;
-}
-
-.warning-banner.hidden {
-    display: none;
 }
 
 /* Header */
@@ -84,6 +69,7 @@ body.dark .warning-banner {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap: 12px;
 }
 
 .header h1 {
@@ -101,7 +87,7 @@ body.dark .warning-banner {
     margin-left: 8px;
 }
 
-/* Main layout: sidebar + content */
+/* Main layout */
 .main-layout {
     display: flex;
     gap: 24px;
@@ -123,11 +109,14 @@ body.dark .sidebar {
     background: #2a3a27;
 }
 
-.filter-section, .compare-section, .toolbar-buttons {
+.filter-section, 
+.compare-section, 
+.toolbar-buttons {
     margin-bottom: 24px;
 }
 
-.filter-section label, .compare-section label {
+.filter-section label, 
+.compare-section label {
     font-weight: 600;
     display: block;
     margin-bottom: 8px;
@@ -139,6 +128,14 @@ select, input {
     border: 1px solid #ccc;
     border-radius: 12px;
     margin-bottom: 12px;
+    background: white;
+}
+
+body.dark select, 
+body.dark input {
+    background: #3a4a37;
+    color: #fff;
+    border-color: #6a8a67;
 }
 
 button {
@@ -180,6 +177,10 @@ button:hover {
     margin-bottom: 8px;
 }
 
+body.dark .compare-list {
+    background: #3a4a3a;
+}
+
 .compare-badge {
     display: inline-block;
     background: #1e3a2f;
@@ -216,6 +217,11 @@ button:hover {
     gap: 8px;
     border-bottom: 1px solid #ddd;
     margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+body.dark .tabs {
+    border-bottom-color: #5a7a57;
 }
 
 .tab-btn {
@@ -231,6 +237,10 @@ button:hover {
 .tab-btn.active {
     background: #1e3a2f;
     color: white;
+}
+
+body.dark .tab-btn.active {
+    background: #3e6a4f;
 }
 
 .tab-pane {
@@ -273,6 +283,8 @@ body.dark .parasite-card {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .parasite-name {
@@ -290,11 +302,13 @@ body.dark .parasite-name {
     padding: 4px 8px;
     border-radius: 20px;
     background: #eef2f0;
+    color: #1a2c3e;
 }
 
-.type-protozoa { background: #ffe0b3; color: #8a5a00; }
-.type-helminth { background: #ccf0cc; color: #2a6a2a; }
-.type-ectoparasite { background: #ffcccc; color: #aa0000; }
+body.dark .type-badge {
+    background: #5a7a57;
+    color: white;
+}
 
 .card-location, .card-symptoms {
     font-size: 0.85rem;
@@ -302,7 +316,8 @@ body.dark .parasite-name {
     color: #555;
 }
 
-body.dark .card-location, body.dark .card-symptoms {
+body.dark .card-location, 
+body.dark .card-symptoms {
     color: #ccc;
 }
 
@@ -334,6 +349,7 @@ body.dark .card-location, body.dark .card-symptoms {
     width: 90%;
     max-width: 700px;
     position: relative;
+    word-break: break-word;
 }
 
 body.dark .modal-content {
@@ -351,6 +367,9 @@ body.dark .modal-content {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
 }
 
 .treatment-section {
@@ -360,24 +379,33 @@ body.dark .modal-content {
     margin: 12px 0;
 }
 
+body.dark .treatment-section {
+    background: #3a5a3a;
+}
+
 .collapsible {
     cursor: pointer;
     background: #d0e0d0;
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 12px;
     margin-top: 8px;
+    font-weight: 500;
+}
+
+body.dark .collapsible {
+    background: #4a6a4a;
 }
 
 .collapsible-content {
     display: none;
-    padding: 8px;
+    padding: 12px;
+    background: #f0f4f0;
+    border-radius: 12px;
+    margin-top: 4px;
 }
 
-.untested-warning {
-    background: #fff0f0;
-    border-left: 4px solid red;
-    padding: 8px;
-    margin-top: 8px;
+body.dark .collapsible-content {
+    background: #3a4a37;
 }
 
 /* Remedies table */
@@ -391,6 +419,8 @@ body.dark .modal-content {
 .remedy-table {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
+    display: block;
 }
 
 .remedy-table th, .remedy-table td {
@@ -400,15 +430,55 @@ body.dark .modal-content {
     vertical-align: top;
 }
 
+body.dark .remedy-table th, 
+body.dark .remedy-table td {
+    border-color: #5a7a57;
+}
+
 .remedy-table th {
     background: #1e3a2f;
     color: white;
 }
 
-/* Compare table */
+body.dark .remedy-table th {
+    background: #3e6a4f;
+}
+
+/* Back to top button */
+.back-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: #1e3a2f;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 90;
+}
+
+body.dark .back-to-top {
+    background: #3e6a4f;
+}
+
+.back-to-top.visible {
+    display: flex;
+}
+
+/* Compare table scroll */
+.compare-table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
 .compare-table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 500px;
 }
 
 .compare-table th, .compare-table td {
@@ -417,7 +487,12 @@ body.dark .modal-content {
     vertical-align: top;
 }
 
-/* Bottom navigation (mobile only) */
+body.dark .compare-table th, 
+body.dark .compare-table td {
+    border-color: #5a7a57;
+}
+
+/* Bottom navigation */
 .bottom-nav {
     display: none;
     position: fixed;
@@ -436,12 +511,26 @@ body.dark .modal-content {
     font-size: 1.8rem;
     color: white;
     opacity: 0.6;
+    cursor: pointer;
 }
 
 .bottom-nav-btn.active {
     opacity: 1;
-    background: none;
     transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 16px;
+    border-top: 1px solid #eee;
+    background: white;
+}
+
+body.dark .footer {
+    border-top-color: #3a5a37;
+    background: #2a3a27;
 }
 
 /* Responsive */
@@ -464,23 +553,31 @@ body.dark .modal-content {
     .content {
         margin-bottom: 70px;
     }
+    .parasite-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 16px;
+    }
+    .remedy-table {
+        font-size: 0.8rem;
+    }
+    .remedy-table th, .remedy-table td {
+        padding: 6px;
+    }
+    .back-to-top {
+        bottom: 70px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
 }
 
 @media (min-width: 769px) {
     .bottom-nav {
         display: none;
     }
-}
-
-.footer {
-    text-align: center;
-    font-size: 0.7rem;
-    padding: 16px;
-    border-top: 1px solid #eee;
-    background: white;
-}
-
-body.dark .footer {
-    border-top-color: #3a5a37;
-    background: #2a3a27;
 }
