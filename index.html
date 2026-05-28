@@ -9,19 +9,19 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- PERMANENT disclaimer (no dismiss) -->
         <div id="warningBanner" class="warning-banner">
             <div class="warning-content">
                 <span>⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.<br>
                 ⚠️ <strong>No single cure kills all parasites.</strong> Treatment depends on the specific parasite.</span>
-                <button id="dismissWarningBtn" class="dismiss-btn">✖</button>
             </div>
         </div>
 
         <header class="header">
             <div><h1>🦠 ParaGuide+</h1><p>Head‑to‑toe parasite effects & remedies</p></div>
             <div class="controls">
-                <button id="darkModeToggle">🌙 Dark</button>
-                <button id="largeTextToggle">🔤 Normal</button>
+                <button id="darkModeToggle" aria-label="Toggle dark mode">🌙 Dark</button>
+                <button id="largeTextToggle" aria-label="Toggle large text">🔤 Normal</button>
             </div>
         </header>
 
@@ -29,7 +29,7 @@
             <aside class="sidebar">
                 <div class="filter-section">
                     <label>🔍 1. Filter by body system:</label>
-                    <select id="bodySystemSelect">
+                    <select id="bodySystemSelect" aria-label="Select body system">
                         <option value="">-- All systems --</option>
                         <option value="brain">🧠 Brain & CNS</option>
                         <option value="eyes">👁️ Eyes</option>
@@ -43,73 +43,86 @@
                         <option value="lymph">🩸 Lymphatic system</option>
                     </select>
                     <button id="bodySystemBtn" class="primary-btn">Show parasites</button>
+                    <button id="showAllBtn" class="secondary-btn" style="margin-top: 8px;">📋 Show all parasites</button>
                 </div>
                 <div class="filter-section">
                     <label>🤒 Or select a symptom:</label>
-                    <select id="symptomSelect">
+                    <select id="symptomSelect" aria-label="Select symptom">
                         <option value="">-- Select symptom --</option>
                         <option value="seizures">Seizures</option>
                         <option value="blindness">Blindness / vision loss</option>
-                        <option value="heart_failure">Heart failure</option>
-                        <option value="cough">Chronic cough</option>
-                        <option value="bloody_urine">Bloody urine</option>
-                        <option value="bloody_stool">Bloody stool</option>
-                        <option value="anal_itching">Anal itching</option>
-                        <option value="skin_ulcers">Skin ulcers</option>
-                        <option value="muscle_pain">Muscle pain / swelling</option>
-                        <option value="elephantiasis">Limb swelling (elephantiasis)</option>
+                        <option value="heart failure">Heart failure</option>
+                        <option value="chronic cough">Chronic cough</option>
+                        <option value="bloody urine">Bloody urine</option>
+                        <option value="bloody stool">Bloody stool</option>
+                        <option value="anal itching">Anal itching</option>
+                        <option value="skin ulcers">Skin ulcers</option>
+                        <option value="muscle pain">Muscle pain / swelling</option>
+                        <option value="limb swelling">Limb swelling (elephantiasis)</option>
                     </select>
                     <button id="symptomBtn" class="primary-btn">Search by symptom</button>
                 </div>
                 <div class="compare-section">
                     <label>🔖 Compare selected parasites:</label>
-                    <div id="compareList" class="compare-list"></div>
+                    <div id="compareList" class="compare-list" aria-live="polite"></div>
                     <button id="compareBtn" class="secondary-btn" disabled>Compare (0 selected)</button>
                     <button id="clearCompareBtn" class="small-btn">Clear</button>
                 </div>
                 <div class="toolbar-buttons">
-                    <button id="doctorBtn" class="tool-btn">🏥 Find doctor</button>
-                    <button id="globalPrintBtn" class="tool-btn">🖨️ Full summary</button>
-                    <button id="feedbackBtn" class="tool-btn">📝 Feedback</button>
+                    <button id="doctorBtn" class="tool-btn" aria-label="Find nearby doctor">🏥 Find doctor</button>
+                    <button id="globalPrintBtn" class="tool-btn" aria-label="Print full summary">🖨️ Full summary</button>
+                    <button id="feedbackBtn" class="tool-btn" aria-label="Send feedback">📝 Feedback</button>
                 </div>
             </aside>
 
             <main class="content">
                 <div class="tabs desktop-tabs">
-                    <button class="tab-btn active" data-tab="grid">🪱 Parasite grid</button>
-                    <button class="tab-btn" data-tab="remedies">🌿 Remedies library</button>
+                    <button class="tab-btn active" data-tab="grid" aria-label="Parasite grid view">🪱 Parasite grid</button>
+                    <button class="tab-btn" data-tab="remedies" aria-label="Natural remedies library">🌿 Remedies library</button>
                 </div>
 
                 <div id="grid-tab" class="tab-pane active">
-                    <div id="parasiteGrid" class="parasite-grid">
+                    <div id="parasiteGrid" class="parasite-grid" aria-live="polite">
                         <div class="loading">Select a body system or symptom to begin.</div>
                     </div>
                 </div>
 
                 <div id="remedies-tab" class="tab-pane">
                     <div class="remedy-controls">
-                        <input type="text" id="remedySearchInput" placeholder="Search remedy, target parasite...">
-                        <select id="remedySortSelect">
+                        <input type="text" id="remedySearchInput" placeholder="Search remedy, target parasite..." aria-label="Search remedies">
+                        <select id="remedySortSelect" aria-label="Sort remedies">
                             <option value="evidence">Sort by evidence (strongest first)</option>
                             <option value="name">Sort by name</option>
                         </select>
                         <button id="remedySearchBtn">Filter</button>
                     </div>
                     <div id="remedyTableContainer"></div>
+                    <button id="backToTopBtn" class="back-to-top" aria-label="Back to top">⬆ Top</button>
                 </div>
             </main>
         </div>
 
         <div class="bottom-nav">
-            <button class="bottom-nav-btn active" data-tab="grid">🪱</button>
-            <button class="bottom-nav-btn" data-tab="remedies">🌿</button>
+            <button class="bottom-nav-btn active" data-tab="grid" aria-label="Parasite grid">🪱</button>
+            <button class="bottom-nav-btn" data-tab="remedies" aria-label="Remedies library">🌿</button>
         </div>
 
         <footer class="footer">Sources: CDC, WHO, peer-reviewed literature, ethnobotanical databases. | ParaGuide+ v7.0</footer>
     </div>
 
-    <div id="parasiteModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><div id="modalBody"></div></div></div>
-    <div id="compareModal" class="modal"><div class="modal-content wide"><span class="close-compare-modal">&times;</span><h2>Compare selected parasites</h2><div id="compareTable"></div></div></div>
+    <div id="parasiteModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    <div id="compareModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="compareTitle" style="display:none;">
+        <div class="modal-content wide">
+            <span class="close-compare-modal" aria-label="Close compare modal">&times;</span>
+            <h2 id="compareTitle">Compare selected parasites</h2>
+            <div id="compareTable"></div>
+        </div>
+    </div>
 
     <script src="parasite_data.js"></script>
     <script src="natural_remedies.js"></script>
