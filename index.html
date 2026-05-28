@@ -3,178 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ParaGuide+ – Complete Parasite Reference</title>
-    <style>
-        * { box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; transition: background 0.3s, color 0.3s; }
-        body.light { background: #f0f7f0; color: #111; }
-        body.dark { background: #1a2a1f; color: #e0e0e0; }
-        body.large-text { font-size: 1.2rem; }
-        body.large-text button, body.large-text select, body.large-text input { font-size: 1.2rem; padding: 12px; }
-        .container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 28px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden; }
-        body.dark .container { background: #2a3a27; }
-        .header { background: #1e3a2f; color: white; padding: 20px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; }
-        .header h1 { margin: 0; }
-        .controls { display: flex; gap: 8px; }
-        .controls button { background: #2e5a4a; border: none; color: white; padding: 6px 12px; border-radius: 20px; cursor: pointer; }
-        .content { padding: 24px; }
-        .warning { background: #fff3e0; border-left: 5px solid #e67e22; padding: 12px 16px; margin-bottom: 24px; border-radius: 12px; }
-        body.dark .warning { background: #3e2a1a; color: #ffd966; border-left-color: #f39c12; }
-        .toolbar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; justify-content: space-between; }
-        .toolbar button { background: #1e3a2f; color: white; border: none; padding: 8px 16px; border-radius: 40px; cursor: pointer; }
-        body.dark .toolbar button { background: #3e6a4f; }
-        .tab-buttons { display: flex; gap: 8px; border-bottom: 1px solid #ddd; flex-wrap: wrap; margin-bottom: 24px; }
-        .tab-btn { background: none; border: none; padding: 10px 16px; cursor: pointer; border-radius: 20px 20px 0 0; }
-        .tab-btn.active { background: #1e3a2f; color: white; }
-        .tab-pane { display: none; }
-        .tab-pane.active { display: block; }
-        .symptom-group { margin-bottom: 20px; }
-        label { font-weight: 600; display: block; margin-bottom: 8px; }
-        select, input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 12px; }
-        body.dark select, body.dark input { background: #3a4a37; color: #fff; border-color: #6a8a67; }
-        button { background: #1e3a2f; color: white; border: none; padding: 12px 20px; border-radius: 40px; cursor: pointer; margin-top: 12px; width: 100%; }
-        .result { margin-top: 24px; background: #f9f9f9; padding: 16px; border-radius: 20px; border-left: 4px solid #1e3a2f; }
-        body.dark .result { background: #2a3a27; border-left-color: #6a9a67; }
-        .parasite-name { font-weight: bold; font-size: 1.3rem; color: #1e3a2f; margin-bottom: 8px; }
-        body.dark .parasite-name { color: #aaffaa; }
-        .body-location { font-style: italic; margin-bottom: 8px; }
-        .treatment-section { background: #e8f0e8; padding: 8px 12px; border-radius: 16px; margin: 12px 0; }
-        body.dark .treatment-section { background: #3a5a3a; }
-        .treatment-category { font-weight: bold; display: inline-block; width: 140px; }
-        hr { margin: 16px 0; }
-        .footer { text-align: center; font-size: 0.75rem; color: #666; padding: 16px; border-top: 1px solid #eee; }
-        @media (max-width: 600px) { .content { padding: 16px; } }
-    </style>
+    <title>ParaGuide+ – Parasite Reference</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e3a2f">
 </head>
-<body class="light">
-<div class="container">
-    <div class="header">
-        <div><h1>🦠 ParaGuide+</h1><p>52 parasites – symptoms, body effects & treatments</p></div>
-        <div class="controls"><button id="darkModeToggle">🌙 Dark</button><button id="largeTextToggle">🔤 Large text</button></div>
-    </div>
-    <div class="content">
-        <div class="warning">
-            ⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.<br>
-            ⚠️ <strong>No single cure kills all parasites.</strong> Treatment depends on the specific parasite identified by a doctor.
-        </div>
-        <div class="toolbar">
-            <button id="doctorBtn">🏥 Find doctor near me</button>
-            <button id="printBtn">🖨️ Printable summary</button>
-            <button id="feedbackBtn">📝 Feedback</button>
-        </div>
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="symptom">🔍 By Symptoms</button>
-            <button class="tab-btn" data-tab="search">🔎 Search Parasite</button>
-            <button class="tab-btn" data-tab="all">📋 All Parasites</button>
-            <button class="tab-btn" data-tab="remedies">🌿 Remedies Library</button>
-        </div>
-
-        <div id="symptom-tab" class="tab-pane active">
-            <div class="symptom-group">
-                <label>Select a symptom to see which parasites cause it and how to treat:</label>
-                <select id="symptomSelect">
-                    <option value="">-- Select symptom --</option>
-                    <option value="diarrhea">💧 Diarrhea (watery)</option>
-                    <option value="bloody_stool">🩸 Bloody stool</option>
-                    <option value="abdominal_pain">🤰 Abdominal pain</option>
-                    <option value="anal_itching">🦷 Anal itching</option>
-                    <option value="fever_chills">🌡️ Fever & chills</option>
-                    <option value="fatigue_anemia">😴 Fatigue / anemia</option>
-                    <option value="seizures">🧠 Seizures</option>
-                    <option value="skin_ulcers">🩹 Skin ulcers</option>
-                    <option value="cough">🍃 Chronic cough</option>
-                    <option value="weight_loss">⚖️ Weight loss</option>
-                    <option value="night_sweats">🌙 Night sweats</option>
-                    <option value="vomiting">🤢 Nausea/vomiting</option>
-                    <option value="eye_problems">👁️ Eye problems</option>
-                    <option value="muscle_pain">💪 Muscle pain</option>
-                    <option value="rash_itching">🪲 Rash / itching</option>
-                    <option value="liver_cysts">🫀 Liver cysts</option>
-                    <option value="heart_failure">❤️ Heart failure</option>
-                </select>
+<body>
+    <div class="app-container">
+        <!-- Dismissible warning banner -->
+        <div id="warningBanner" class="warning-banner">
+            <div class="warning-content">
+                <span>⚠️ <strong>Medical disclaimer:</strong> Educational only. Not medical advice. Always consult a doctor.<br>
+                ⚠️ <strong>No single cure kills all parasites.</strong> Treatment depends on the specific parasite identified by a doctor.</span>
+                <button id="dismissWarningBtn" class="dismiss-btn">✖</button>
             </div>
-            <button id="symptomBtn">Show possible parasites & treatments</button>
-            <div id="symptomResult" class="result" style="display:none;"></div>
         </div>
 
-        <div id="search-tab" class="tab-pane">
-            <div class="symptom-group"><label>Enter parasite name:</label><input type="text" id="searchInput" placeholder="e.g., Giardia, Taenia, Schistosoma"></div>
-            <button id="searchBtn">Search</button>
-            <div id="searchResult" class="result" style="display:none;"></div>
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <h1>🦠 ParaGuide+</h1>
+                <p>52 parasites – symptoms, body effects & treatments</p>
+            </div>
+            <div class="controls">
+                <button id="darkModeToggle" aria-label="Dark mode">🌙 Dark</button>
+                <button id="largeTextToggle" aria-label="Large text">🔤 Normal</button>
+            </div>
+        </header>
+
+        <!-- Main layout: sidebar + content for desktop, stacked for mobile -->
+        <div class="main-layout">
+            <!-- Sidebar / Top filter bar (symptom selector + compare controls) -->
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <label>🔍 1. Select a symptom:</label>
+                    <select id="symptomSelect">
+                        <option value="">-- Select symptom --</option>
+                        <option value="diarrhea">💧 Watery diarrhea</option>
+                        <option value="bloody_stool">🩸 Bloody stool</option>
+                        <option value="abdominal_pain">🤰 Abdominal pain</option>
+                        <option value="anal_itching">🦷 Anal itching</option>
+                        <option value="fever_chills">🌡️ Fever & chills</option>
+                        <option value="fatigue_anemia">😴 Fatigue / anemia</option>
+                        <option value="seizures">🧠 Seizures</option>
+                        <option value="skin_ulcers">🩹 Skin ulcers</option>
+                        <option value="cough">🍃 Chronic cough</option>
+                        <option value="weight_loss">⚖️ Weight loss</option>
+                        <option value="night_sweats">🌙 Night sweats</option>
+                        <option value="vomiting">🤢 Nausea/vomiting</option>
+                        <option value="eye_problems">👁️ Eye problems</option>
+                        <option value="muscle_pain">💪 Muscle pain</option>
+                        <option value="rash_itching">🪲 Rash / itching</option>
+                        <option value="liver_cysts">🫀 Liver cysts</option>
+                        <option value="heart_failure">❤️ Heart failure</option>
+                    </select>
+                    <button id="symptomBtn" class="primary-btn">Show parasites</button>
+                </div>
+
+                <div class="compare-section">
+                    <label>🔖 2. Compare selected parasites:</label>
+                    <div id="compareList" class="compare-list"></div>
+                    <button id="compareBtn" class="secondary-btn" disabled>Compare (0 selected)</button>
+                    <button id="clearCompareBtn" class="small-btn">Clear all</button>
+                </div>
+
+                <div class="toolbar-buttons">
+                    <button id="doctorBtn" class="tool-btn">🏥 Find doctor</button>
+                    <button id="globalPrintBtn" class="tool-btn">🖨️ Full summary</button>
+                    <button id="feedbackBtn" class="tool-btn">📝 Feedback</button>
+                </div>
+            </aside>
+
+            <!-- Main content: parasite grid -->
+            <main class="content">
+                <!-- Tabs (desktop top tabs, mobile bottom nav will be duplicated) -->
+                <div class="tabs desktop-tabs">
+                    <button class="tab-btn active" data-tab="grid">🔍 Parasites by symptom</button>
+                    <button class="tab-btn" data-tab="search">🔎 Search parasite</button>
+                    <button class="tab-btn" data-tab="all">📋 All parasites</button>
+                    <button class="tab-btn" data-tab="remedies">🌿 Remedies library</button>
+                </div>
+
+                <!-- Grid tab (default) -->
+                <div id="grid-tab" class="tab-pane active">
+                    <div id="parasiteGrid" class="parasite-grid">
+                        <!-- Cards will be injected here -->
+                        <div class="loading">Select a symptom or view all parasites.</div>
+                    </div>
+                </div>
+
+                <!-- Search tab -->
+                <div id="search-tab" class="tab-pane">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Enter parasite name...">
+                        <button id="searchBtn">Search</button>
+                    </div>
+                    <div id="searchResults" class="parasite-grid"></div>
+                </div>
+
+                <!-- All parasites tab -->
+                <div id="all-tab" class="tab-pane">
+                    <div id="allParasitesGrid" class="parasite-grid"></div>
+                </div>
+
+                <!-- Remedies tab -->
+                <div id="remedies-tab" class="tab-pane">
+                    <div class="remedy-controls">
+                        <input type="text" id="remedySearchInput" placeholder="Search remedy or target...">
+                        <select id="remedySortSelect">
+                            <option value="evidence">Sort by evidence (high to low)</option>
+                            <option value="name">Sort by name</option>
+                        </select>
+                        <button id="remedySearchBtn">Filter</button>
+                    </div>
+                    <div id="remedyTableContainer"></div>
+                </div>
+            </main>
         </div>
 
-        <div id="all-tab" class="tab-pane"><div id="allResult" class="result"></div></div>
-
-        <div id="remedies-tab" class="tab-pane">
-            <div class="symptom-group"><label>Search natural remedies by name or target parasite:</label><input type="text" id="remedySearchInput" placeholder="e.g., berberine, wormwood, Giardia"></div>
-            <button id="remedySearchBtn">Search remedies</button>
-            <div id="remedyResult" class="result" style="display:none;"></div>
-            <div class="warning">🌿 Natural remedies are not substitutes for prescription drugs. Many have limited evidence.</div>
+        <!-- Modal for parasite details -->
+        <div id="parasiteModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div id="modalBody"></div>
+            </div>
         </div>
+
+        <!-- Compare modal -->
+        <div id="compareModal" class="modal">
+            <div class="modal-content wide">
+                <span class="close-compare-modal">&times;</span>
+                <h2>Compare selected parasites</h2>
+                <div id="compareTable"></div>
+            </div>
+        </div>
+
+        <!-- Bottom navigation for mobile -->
+        <div class="bottom-nav">
+            <button class="bottom-nav-btn active" data-tab="grid">🔍</button>
+            <button class="bottom-nav-btn" data-tab="search">🔎</button>
+            <button class="bottom-nav-btn" data-tab="all">📋</button>
+            <button class="bottom-nav-btn" data-tab="remedies">🌿</button>
+        </div>
+
+        <footer class="footer">
+            Sources: CDC, WHO, peer-reviewed literature, historical texts. | ParaGuide+ v6.0
+        </footer>
     </div>
-    <div class="footer">Sources: CDC, WHO, peer-reviewed literature, historical texts. | ParaGuide+ v5.0</div>
-</div>
-<script src="parasite_data.js"></script>
-<script src="natural_remedies.js"></script>
-<script>
-    const body = document.body;
-    document.getElementById('darkModeToggle').onclick = () => {
-        body.classList.toggle('light'); body.classList.toggle('dark');
-        document.getElementById('darkModeToggle').textContent = body.classList.contains('dark') ? '☀️ Light' : '🌙 Dark';
-    };
-    document.getElementById('largeTextToggle').onclick = () => {
-        body.classList.toggle('large-text');
-        document.getElementById('largeTextToggle').textContent = body.classList.contains('large-text') ? '🔤 Normal' : '🔤 Large';
-    };
-    document.getElementById('doctorBtn').onclick = () => {
-        if (navigator.geolocation) navigator.geolocation.getCurrentPosition(p => window.open(`https://www.google.com/maps/search/doctor+infectious+disease/@${p.coords.latitude},${p.coords.longitude},12z`), () => window.open('https://www.google.com/maps/search/infectious+disease+doctor'));
-        else window.open('https://www.google.com/maps/search/infectious+disease+doctor');
-    };
-    document.getElementById('printBtn').onclick = () => {
-        let html = '<html><head><title>Parasite Reference</title><style>body{font-family:sans-serif;} table{border-collapse:collapse;width:100%} th,td{border:1px solid #ccc;padding:6px}</style></head><body><h1>ParaGuide+ Parasite List</h1><p>⚠️ No single cure kills all parasites. Treatment depends on the specific parasite.</p>';
-        html += '<table><th>Parasite</th><th>Location</th><th>Effects</th><th>Doctor Rx</th><th>Natural</th><th>Historical</th></tr>';
-        window.parasiteData.forEach(p => {
-            html += `<tr><td>${p.name}</td><td>${p.body_location}</td><td>${p.effects_why}</td><td>${p.treatments.doctor}</td><td>${p.treatments.natural}</td><td>${p.treatments.historical}</td></tr>`;
-        });
-        html += '</table><p>Not medical advice. Consult a doctor.</p></body></html>';
-        let w = window.open(); w.document.write(html); w.document.close(); w.print();
-    };
-    document.getElementById('feedbackBtn').onclick = () => alert('Replace with your Google Form link in code.');
 
-    function displayParasite(p) {
-        let html = `<div class="parasite-name">🪱 ${p.name}</div>`;
-        html += `<div class="body-location">📍 Lives in: ${p.body_location} — ${p.why_there}</div>`;
-        html += `<div><strong>Effects on body:</strong> ${p.effects_why}</div>`;
-        html += `<div><strong>Symptoms:</strong> ${p.symptoms}</div>`;
-        html += `<div class="treatment-section"><span class="treatment-category">💊 Doctor’s prescription:</span> ${p.treatments.doctor}</div>`;
-        if (p.treatments.natural) html += `<div class="treatment-section"><span class="treatment-category">🌿 Natural remedies:</span> ${p.treatments.natural}</div>`;
-        if (p.treatments.historical) html += `<div class="treatment-section"><span class="treatment-category">📜 Historical / traditional:</span> ${p.treatments.historical}</div>`;
-        if (p.treatments.untested) html += `<div class="treatment-section"><span class="treatment-category">🔬 Untested / experimental:</span> ${p.treatments.untested}</div>`;
-        html += `<hr>`;
-        return html;
-    }
-
-    function searchParasite(q) { let matches = window.parasiteData.filter(p => p.name.toLowerCase().includes(q.toLowerCase())); return matches.length ? matches.map(displayParasite).join('') : '<p>No parasite found.</p>'; }
-    function getParasitesBySymptom(symptom) {
-        let matches = window.parasiteData.filter(p => p.symptom_keywords && p.symptom_keywords.includes(symptom));
-        if (!matches.length) return '<p>No parasites found for this symptom. Consult a doctor.</p>';
-        return matches.map(displayParasite).join('');
-    }
-    function displayRemedy(r) { return `<div class="parasite-name">🌿 ${r.name}</div><div><strong>Targets:</strong> ${r.target}</div><div><strong>Evidence:</strong> ${r.evidence}</div><div><strong>Safety:</strong> ${r.safety}</div><hr>`; }
-    function searchRemedies(q) { let m = window.naturalRemedies.filter(r => r.name.toLowerCase().includes(q.toLowerCase()) || r.target.toLowerCase().includes(q.toLowerCase())); return m.length ? m.map(displayRemedy).join('') : '<p>No remedies found.</p>'; }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const tabs = { symptom: document.getElementById('symptom-tab'), search: document.getElementById('search-tab'), all: document.getElementById('all-tab'), remedies: document.getElementById('remedies-tab') };
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.onclick = () => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            Object.keys(tabs).forEach(k => tabs[k].classList.remove('active'));
-            tabs[btn.dataset.tab].classList.add('active');
-            if (btn.dataset.tab === 'all') document.getElementById('allResult').innerHTML = window.parasiteData.map(displayParasite).join('');
-        });
-        document.getElementById('symptomBtn').onclick = () => { let s = document.getElementById('symptomSelect').value; if(s) document.getElementById('symptomResult').innerHTML = getParasitesBySymptom(s), document.getElementById('symptomResult').style.display='block'; else alert('Select a symptom'); };
-        document.getElementById('searchBtn').onclick = () => { let q = document.getElementById('searchInput').value.trim(); if(q) document.getElementById('searchResult').innerHTML = searchParasite(q), document.getElementById('searchResult').style.display='block'; };
-        document.getElementById('remedySearchBtn').onclick = () => { let q = document.getElementById('remedySearchInput').value.trim(); if(q) document.getElementById('remedyResult').innerHTML = searchRemedies(q), document.getElementById('remedyResult').style.display='block'; };
-    });
-</script>
+    <script src="parasite_data.js"></script>
+    <script src="natural_remedies.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
